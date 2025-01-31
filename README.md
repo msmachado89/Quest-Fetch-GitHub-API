@@ -2,7 +2,7 @@
 
 * Resolução da Quest proposta no módulo de JS Avançado do curso DevQuest para Desenvolvimento Web FullStack.
 * A Quest consiste na resolução de desafios: "implementar novas solicitações no Projeto Fetch e GitHub API".
-* Aqui está o link para o GitHub Pages: [Quest - JS Avançado!]()
+* Aqui está o link para o GitHub Pages: [Quest - JS Avançado!](https://msmachado89.github.io/Quest-Fetch-GitHub-API/)
 
 ## 🛠️ Construído com
 

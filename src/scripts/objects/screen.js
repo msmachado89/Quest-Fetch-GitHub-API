@@ -25,7 +25,22 @@ const screen = {
 
     renderNotFound(){
         this.userProfile.innerHTML = "<h3>Usuário não encontrado!</h3>"
-    }
+    },
+
+    // renderEvents(){
+    //     let eventsItens = ""
+    //     user.events.forEach(
+    //       (event) =>
+    //         (eventsItens += `<li><a href="${repo.html_url}" target="_blank">${repo.name}</a></li>`)
+    //     )
+        
+    //     if (user.repositories.length > 0) {
+    //       this.userProfile.innerHTML += `<div class="repositories section">
+    //                                             <h2>Repositórios</h2>
+    //                                             <ul>${repositoriesItens}</ul>
+    //                                         </div>`
+    //     }
+    // }
 }
 
 export { screen }
