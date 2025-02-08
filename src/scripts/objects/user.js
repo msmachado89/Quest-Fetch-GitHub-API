@@ -1,43 +1,42 @@
 const user = {
-    avatarUrl: '',
-    name: '',
-    bio: '',
-    userName: '',
-    followers: '',
-    following: '',
-    repositories: [],
-    eventsCreate: [],
-    eventsPush: [{
-        eventPushRepository: '',
-        eventPushCommit: '',
-    }],
-    setInfo(gitHubUser) {
-        this.avatarUrl = gitHubUser.avatar_url
-        this.name = gitHubUser.name
-        this.bio = gitHubUser.bio
-        this.userName = gitHubUser.login
-        this.followers = gitHubUser.followers
-        this.following = gitHubUser.following
-    },
-    setRepositories(repositories){
-        this.repositories = repositories
-    },
-    setEvents(events){
-    //   if (events.type === "CreateEvent") {
-    //     this.eventsCreate += events.name
-    //   } else if (events.type === "PushEvent") {
-    //     this.eventsPush.eventPushRepository = events.name
-    //     this.eventsPush.eventPushCommit =
-    //       events.payload.commits.O.author.message
-    //   }
-
-    //   const commitMessages = events
-    //     .filter((event) => event.type === "PushEvent") // Filtra apenas eventos de push
-    //     .flatMap((event) => event.payload.commits || []) // Obtém todos os commits
-    //     .map((commit) => commit.message) // Extrai apenas a mensagem do commit
-
-      console.log(events)
-    }
+  avatarUrl: "",
+  name: "",
+  bio: "",
+  userName: "",
+  followers: "",
+  following: "",
+  repositories: [],
+  events: [],
+  setInfo(gitHubUser) {
+    this.avatarUrl = gitHubUser.avatar_url
+    this.name = gitHubUser.name
+    this.bio = gitHubUser.bio
+    this.userName = gitHubUser.login
+    this.followers = gitHubUser.followers
+    this.following = gitHubUser.following
+  },
+  setRepositories(repositories) {
+    this.repositories = repositories
+  },
+  setEvents(events) {
+    this.events = events.filter((event) => event.type === "PushEvent" || event.type === "CreateEvent").map((event) => {
+        if (event.type === "PushEvent") {
+          const commit =
+            event.payload.commits?.[event.payload.commits.length - 1]
+          return {
+            type: "PushEvent",
+            repoName: event.repo.name,
+            commitMessage: commit ? commit.message : "Sem mensagem de commit",
+          }
+        } else if (event.type === "CreateEvent") {
+          return {
+            type: "CreateEvent",
+            repoName: event.repo.name,
+            commitMessage: "Sem mensagem de commit",
+          }
+        }
+      })
+  },
 }
 
 export { user }

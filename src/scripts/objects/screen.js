@@ -7,8 +7,8 @@ const screen = {
                                                 <h1>${user.name ?? 'Não possui nome cadastrado 😥'}</h1>
                                                 <p>${user.bio ?? 'Não possui bio cadastrada 😥'}</p>
                                                 <br>
-                                                <p>Seguidores: ${user.followers}</p>
-                                                <p>Seguindo: ${user.following}</p>
+                                                <p>🕺 Seguidores: ${user.followers}</p>
+                                                <p>🏃‍♂️ Seguindo: ${user.following}</p>
                                             </div>
                                         </div>`
 
@@ -21,26 +21,27 @@ const screen = {
                                                 <ul>${repositoriesItens}</ul>
                                             </div>` 
         }
+
+        let eventsItens = ""
+        user.events.forEach(
+          (event) =>
+            (eventsItens += `<li><span>${event.repoName}</span> - ${event.commitMessage}</li>`)
+        )
+        
+
+        if (user.events.length > 0) {
+          this.userProfile.innerHTML += `<div class="events section">
+                                                <h2>Eventos</h2>
+                                                <ul>${eventsItens}</ul>
+                                            </div>`
+        }
+
     },
 
     renderNotFound(){
         this.userProfile.innerHTML = "<h3>Usuário não encontrado!</h3>"
     },
 
-    // renderEvents(){
-    //     let eventsItens = ""
-    //     user.events.forEach(
-    //       (event) =>
-    //         (eventsItens += `<li><a href="${repo.html_url}" target="_blank">${repo.name}</a></li>`)
-    //     )
-        
-    //     if (user.repositories.length > 0) {
-    //       this.userProfile.innerHTML += `<div class="repositories section">
-    //                                             <h2>Repositórios</h2>
-    //                                             <ul>${repositoriesItens}</ul>
-    //                                         </div>`
-    //     }
-    // }
 }
 
 export { screen }
