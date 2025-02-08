@@ -160,13 +160,13 @@ main {
 }
 
 .container .profile-data .events ul{
-  display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
 .container .profile-data .events ul li{
   margin-bottom: 20px;
+  display: block;
 }
 
 .container .profile-data .events ul li span{
