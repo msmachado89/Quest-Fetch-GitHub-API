@@ -16,10 +16,21 @@ const user = {
     this.following = gitHubUser.following
   },
   setRepositories(repositories) {
-    this.repositories = repositories
+    this.repositories = repositories.map(repo => ({
+        name: repo.name, 
+        forks: repo.forks,
+        stars: repo.stargazers_count,
+        watchers: repo.watchers,
+        language: repo.language,
+      }))    
+    console.log(this.repositories)
   },
   setEvents(events) {
-    this.events = events.filter((event) => event.type === "PushEvent" || event.type === "CreateEvent").map((event) => {
+    this.events = events
+      .filter(
+        (event) => event.type === "PushEvent" || event.type === "CreateEvent"
+      )
+      .map((event) => {
         if (event.type === "PushEvent") {
           const commit =
             event.payload.commits?.[event.payload.commits.length - 1]
